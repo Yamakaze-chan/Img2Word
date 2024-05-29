@@ -1,0 +1,485 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Notebook - Phần mềm OCR chuyển ảnh thành file Word</title>
+    <link rel="icon" type="image/x-icon" href="screen/logo.ico">
+    <script src="bootstrap_bundle_min.js"></script>
+    <link href="bootstrap_min.css" rel="stylesheet">    
+  <style>
+  body {
+    margin: 40px 20px;
+  }
+  
+  h3 {
+    font-weight: 600;
+  }
+  
+  h4 {
+    color: #454646 !important;
+  }
+  
+  .hr-line {
+    border-top: 1px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(90deg, White, DimGrey, White) border-box;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .custom-container {
+    min-width: 480px;
+    max-width: 860px;
+    /* min-height: 440px; */
+    height: 500px;
+    border: 1px solid DimGrey;
+    margin: auto;
+  }
+  
+  .section {
+    min-width: 340px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .main-text {
+    height: 70%;
+    overflow: hidden;
+    font-weight: 200;
+    font-size: 18px;
+    cursor: text;
+    color: DimGrey;
+    margin: 0px 25px 25px 25px;
+    display: none;
+  }
+
+  .main-text::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .button-thin {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid LightGrey;
+    border-radius: 50%;
+    background-color: transparent;
+    & i {
+      position: relative;
+      top: 3px;
+      left: 1px;
+    }
+  }
+  
+  .section-1 {
+    border-right: 1px solid DimGrey;
+    background-color: Orange;
+    & h3 {
+      color: Orange;
+    }
+    & button {
+      color: Orange;
+      border-color: Orange;
+    }
+  }
+  
+  .section-2 {
+    border-right: 1px solid DimGrey;
+    background-color: Hotpink;
+    & h3 {
+      color: HotPink;
+    }
+    & button {
+      color: HotPink;
+      border-color: HotPink;
+    }
+  }
+  
+  .section-3 {
+    background-color: DodgerBlue;
+    & h3 {
+      color: DodgerBlue;
+    }
+    & button {
+      color: DodgerBlue;
+      border-color: DodgerBlue;
+    }
+    & div {
+      overflow-y: scroll;
+    }
+    & div::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .section-4 {
+    background-color: #A459D1;
+    & h3 {
+      color: #A459D1;
+    }
+    & button {
+      color: #A459D1;
+      border-color: #A459D1;
+    }
+  }
+  
+  .grow {
+    flex: 5;
+    background-color: white;
+    & h3 {
+      padding: 20px 0px 20px 20px;
+    }
+    & button {
+      margin: 20px 20px 0px 20px;
+      transform: rotate(180deg);
+    }
+    & div {
+      justify-content: end;
+    }
+  }
+  
+  .shrink {
+    min-width: 65px;
+    flex: 0.1;
+    & h3 {
+      color: WhiteSmoke;
+      transform-origin: 20% 100%;
+      writing-mode: vertical-rl;
+      margin: 20px 0px 15px 15px;
+    }
+    & button {
+      color: WhiteSmoke;
+      border: 1px solid WhiteSmoke;
+      margin: 20px 0px 0px 10px;
+    }
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateY(-120px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 100%;
+    }
+  }
+  
+  .show {
+    display: block;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .animate {
+    animation: slide 0.4s ease;
+  }
+  
+  .shadow-dark {
+    box-shadow: -12px 0px 20px -15px DimGrey inset;
+  }
+  
+  .shadow-blue {
+    box-shadow: -12px 0px 20px -15px #0a3a69 inset;
+  }
+  
+  .shadow-pink {
+    box-shadow: -12px 0px 20px -15px #50213b inset;
+  }
+  
+  .shadow-orange {
+    box-shadow: -12px 0px 20px -15px #63410b inset;
+  }
+  </style>
+  
+    
+    
+  </head>
+  
+  <body>
+    <div class="hr-line mt-4 mb-4"></div>
+    <h4 class="fw-bold text-center mt-5 mb-5">Sổ tay hướng dẫn sử dụng</h4>
+    <div class="custom-container d-flex flex-row align-items-stretch">
+      <div class="section section-1 grow shadow-dark" id="section-1" role="tabpanel">
+        <div class="d-flex flex-row">
+          <button onclick="check_section_1()" role="tab" class="button-thin" aria-label="Click to expand Section 1" aria-expanded="true" aria-controls="text-1">
+            <span>&#10097;&#10097;</span>
+          </button>
+        </div>
+        <h3>Lời nói đầu</h3>
+        <p id="text-1" class="main-text show">
+            <b>Cảm ơn bạn vì đã sử dụng phần mềm chuyển ảnh thành file Word.</b>
+            <br>
+            Nếu có góp ý hoặc vấn đề gì thì vui lòng liên hệ thông qua Gmail: <strong>nhatvipmason@gmail.com</strong>
+        </p>
+      </div>
+      <div class="section section-2 shrink shadow-pink" id="section-2" role="tabpanel">
+        <div class="d-flex flex-row">
+          <button onclick="check_section_2()" role="tab" class="button-thin" aria-label="Click to expand Section 2" aria-expanded="false" aria-controls="text-2">
+            <span>&#10097;&#10097;</span>
+          </button>
+        </div>
+        <h3>Các chức năng của phần mềm</h3>
+        <div id="text-2" class="main-text hide animate" style="overflow-y: scroll;">
+              <details>
+                <summary>Màn hình chính</summary>
+                <details>
+                  <summary>Chọn file từ máy tính</summary>
+                  <p>Sử dụng để lấy ảnh trong máy tính
+                  </p>
+                  <img
+                  style = "width: 100%;"
+                  src = "screen/get_img_btn.png">
+                </details>
+                <details>
+                  <summary>Nhận file từ thiết bị khác</summary>
+                  <p>Dùng để truyền ảnh từ thiết bị khác sang máy tính
+                  </p>
+                  <img
+                  style = "width: 100%;"
+                  src = "screen/recieve_img_btn.png">
+                </details>
+                <details>
+                  <summary>Lịch sử</summary>
+                  <p>Ở thời điểm hiện tại, lịch sử chỉ lưu lại các ảnh đã nhận từ thiết bị khác (Chỉ lưu tối đa 100 ảnh, và tự động xóa ảnh cũ nhất nếu số lượng ảnh vượt quá 100)
+                  </p>
+                  <img
+                  style = "width: 100%;"
+                  src = "screen/history_btn.png">
+                </details>
+              </details>
+              <details>
+                <summary>Màn hình đọc ảnh thành file Word</summary>
+                <img
+                style = "width: 100%;"
+                src = "screen/file_to_doc_screen.png">
+              </details>
+              <details>
+                <summary>Màn hình lịch sử</summary>
+                <img
+                style = "width: 100%;"
+                src = "screen/history_screen.png">
+              </details>
+        </div>
+      </div>
+      <div class="section section-3 shrink shadow-blue" id="section-3" role="tabpanel">
+        <div class="d-flex flex-row">
+          <button onclick="check_section_3()" role="tab" class="button-thin" aria-label="Click to expand Section 3" aria-expanded="false" aria-controls="text-3">
+            <span>&#10097;&#10097;</span>
+          </button>
+        </div>
+        <h3>Một số câu hỏi có thể gặp</h3>
+        <div id="text-3" class="main-text hide animate">
+            <details>
+              <summary>Làm sao để chuyển ảnh từ thiết bị khác sang máy tính?</summary>
+              <p>Bạn có thể truyền ảnh thông qua các phần mềm khác như <b>Zalo</b>, <b>Google Drive</b>,... hoặc <b>Bluetooth</b>, <b>cáp</b>,...</p>
+              <p>Hoặc</p>
+              <p><b>Yêu cầu: Cả hai thiết bị phải cùng kết nối vào cùng 1 mạng Wifi trước khi khởi động chương trình</b></p>
+              <p>Bước 1: Chạy phần mềm</p>
+              <p>Bước 2: Chọn "Nhận file từ thiết bị khác"</p>
+              <p>Bước 3: Đọc kĩ thông báo, sau đó chọn "Xác nhận"</p>
+              <p>Bước 4: 
+                <br> - Đối với các thiết bị di dộng hoặc các thiết bị có camera (Ví dụ như điện thoại thông minh): Sử dụng Camera hoặc các phần mềm khác để đọc mã QR để truy cập trang truyền ảnh
+                <br> - Đối với các thiết bị không có camera: Nhập đường dẫn bên dưới mã QR để truy cập trang truyền ảnh
+              </p>
+            </details>
+            <details>
+              <summary>Tại sao quét mã QR hoặc đã nhập đường dẫn nhưng không thể truy cập trang truyền ảnh?</summary>
+              <p>Nếu không thể truy cập trang truyền ảnh, phiền bạn vui lòng kiểm tra lại: </p>
+              <p> - Cả hai đã kết nối cùng 1 Wifi hay chưa. 
+                <br>&emsp; + Nếu chưa, phiền bạn kết nối cả hai thiết bị vào cùng 1 Wifi và khởi động lại phần mềm. 
+                <br>&emsp; + Nếu rồi, hãy thử tắt phần mềm và khởi động lại phần mềm. Nếu chưa thể kết nối thì hãy thử sử dụng mạng Wifi khác.</p>
+            </details>
+            <details>
+              <summary>Phần mềm có yêu cầu kết nối Internet không?</summary>
+              <p>Phần mềm chỉ yêu cầu kết nối Internet ở lần đầu khởi chạy. Vì có một số tài nguyên cần phải tải xuống để chương trình hoạt động. Những lần sau đó thì không yêu cầu kết nối Internet.</p>
+            </details>
+            <details>
+              <summary>Trong điều kiện không có kết nối Internet, làm thế nào để truyền ảnh?</summary>
+              <p>Bạn có thể truyền ảnh thông qua Bluetooth, cáp,...</p>
+              <p>Hoặc</p>
+              <p> - Thiết bị có chức năng chia sẻ kết nối Wifi (điện thoại thông minh, một số loại laptop,...):</p>
+              <p>&emsp; + Đối với điện thoại Samsung: Vào <b>Cài đặt</b> > Chọn <b>Kết nối</b> > Chọn <b>Chia sẻ kết nối Internet</b> > Bật <b>Điểm truy cập di động</b> > Đổi tên và mật khẩu ở mục <b>Điểm truy cập di động</b>.</p>
+              <p>&emsp; + Đối với điện thoại Iphone: Vào <b>Cài đặt</b> > Chọn <b>Điểm truy cập cá nhân</b> > Bật <b>Cho phép người khác kết nối</b>.</p>
+              <p>&emsp; + Đối với điện thoại Huawei: Vào <b>Cài đặt</b> > Chọn mục <b>Không dây & mạng</b> > Chọn <b>Chia sẻ mạng & điểm phát sóng di động</b> > Chọn <b>Điểm phát WiFi di động</b> > Ấn nút bật bên phải tên thiết bị của bạn > Chọn cấu hình điểm phát sóng để đặt tên WiFi và mật khẩu >Bấm <b>Lưu</b>.</p>
+              <p>&emsp; + Đối với điện thoại Xiaomi: Vào <b>Cài đặt</b> > Chọn <b>Điểm phát sóng di động</b> >  Bật <b>Điểm phát sóng WiFi di động</b> > Chọn mục <b>Thiết lập điểm phát sóng WiFi di động để đặt tên WiFi và mật khẩu</b>.</p>
+              <p>&emsp; + Đối với Laptop (Một số loại laptop có thể không hỗ trợ tính năng này): Vào <b>Start</b> > Chọn <b>Settings</b> > Nhấn vào <b>Network & Internet</b> > Chuyển đến tab <b>Mobile Hotspot</b> > Bật chế bạn bật <b>On</b> cho chức năng <b>Share my Internet connection from</b>.</p>
+              <p>...hoặc tìm 1 dân IT hướng dẫn bạn</p>
+            </details>
+            <details>
+              <summary>Tại sao không thể mở lại sau khi thu nhỏ màn hình?</summary>
+              <p>Ở thời điểm phần mềm được viết, Flet vẫn là công nghệ mới và vẫn đang trong giai đoạn phát triển, vì thế lỗi là điều không thể tránh khỏi. Thành thật rất xin lỗi vì mang lại trải nghiệm không tốt cho bạn, phần mềm sẽ cố gắng khắc phục lỗi này sớm nhất có thể.</p>
+            </details>
+        </div>
+      </div>
+      <div class="section section-4 shrink shadow-blue" id="section-4" role="tabpanel">
+        <div class="d-flex flex-row">
+          <button onclick="check_section_4()" role="tab" class="button-thin" aria-label="Click to expand Section 3" aria-expanded="false" aria-controls="text-4">
+            <span>&#10097;&#10097;</span>
+          </button>
+        </div>
+        <h3>Lời cuối</h3>
+        <div id="text-4" class="main-text hide animate">
+          <p>
+            Phần mềm được viết bằng Python, có sử dụng Flet, mô hình VietOCR, EasyOCR nhưng người lập trình phần mềm không có đủ kinh phí để có thể mua bản quyền nên phần mềm chỉ được sử dụng trong mục đích phi thương mại. Nếu bạn có điều kiện, hãy ủng hộ tác giả: 
+          </p>
+          <a href="https://www.jaided.ai/" target="_blank">EasyOCR</a><br>
+          <a href="https://github.com/pbcquoc/vietocr" target="_blank">VietOCR</a><br>
+          <a href="https://flet.dev/" target="_blank">Flet</a><br>
+
+        </div>
+      </div>
+    </div>
+    <div class="hr-line mt-5 mb-4"></div>
+        <script>
+  const divOne = document.getElementById("section-1");
+  divOne.addEventListener("click", check_section_1);
+  
+  const divTwo = document.getElementById("section-2");
+  divTwo.addEventListener("click", check_section_2);
+  
+  const divThree = document.getElementById("section-3");
+  divThree.addEventListener("click", check_section_3);
+
+  const divFour = document.getElementById("section-4");
+  divFour.addEventListener("click", check_section_4);
+  
+  function check_section_1() {
+    let sectionOne = document.getElementById("section-1");
+    let sectionTwo = document.getElementById("section-2");
+    let sectionThree = document.getElementById("section-3");
+    let sectionFour = document.getElementById("section-4");
+    let textOne = document.getElementById("text-1");
+    let textTwo = document.getElementById("text-2");
+    let textThree = document.getElementById("text-3");
+    let textFour = document.getElementById("text-4");
+  
+    if (sectionOne.classList.contains("shrink")) {
+      sectionOne.classList.replace("shrink", "grow");
+      sectionOne.classList.replace("shadow-orange", "shadow-dark");
+      sectionOne.setAttribute("aria-expanded", "true");
+      sectionTwo.classList.replace("grow", "shrink");
+      sectionTwo.classList.replace("shadow-dark", "shadow-pink");
+      sectionTwo.setAttribute("aria-expanded", "false");
+      sectionThree.classList.replace("grow", "shrink");
+      sectionThree.classList.replace("shadow-dark", "shadow-blue");
+      sectionThree.setAttribute("aria-expanded", "false");
+      sectionFour.classList.replace("grow", "shrink");
+      sectionFour.classList.replace("shadow-dark", "shadow-blue");
+      sectionFour.setAttribute("aria-expanded", "false");
+      textOne.classList.replace("hide", "animate");
+      textTwo.classList.remove("show");
+      textThree.classList.replace("show", "hide");
+      textFour.classList.replace("show", "hide");
+      setTimeout(() => {
+        document.getElementById("text-1").classList.add("show");
+      }, 300);
+      textOne.classList.add("animate");
+    }
+  }
+  
+  function check_section_2() {
+    let sectionOne = document.getElementById("section-1");
+    let sectionTwo = document.getElementById("section-2");
+    let sectionThree = document.getElementById("section-3");
+    let sectionFour = document.getElementById("section-4");
+    let textOne = document.getElementById("text-1");
+    let textTwo = document.getElementById("text-2");
+    let textThree = document.getElementById("text-3");
+    let textFour = document.getElementById("text-4");
+  
+    if (sectionTwo.classList.contains("shrink")) {
+      sectionTwo.classList.replace("shrink", "grow");
+      sectionTwo.classList.replace("shadow-pink", "shadow-dark");
+      sectionTwo.setAttribute("aria-expanded", "true");
+      sectionOne.classList.replace("grow", "shrink");
+      sectionOne.classList.replace("shadow-dark", "shadow-orange");
+      sectionOne.setAttribute("aria-expanded", "false");
+      sectionThree.classList.replace("grow", "shrink");
+      sectionThree.classList.replace("shadow-dark", "shadow-blue");
+      sectionThree.setAttribute("aria-expanded", "false");
+      sectionFour.classList.replace("grow", "shrink");
+      sectionFour.classList.replace("shadow-dark", "shadow-blue");
+      sectionFour.setAttribute("aria-expanded", "false");
+      textOne.classList.replace("show", "hide");
+      textTwo.classList.remove("hide");
+      textThree.classList.replace("show", "hide");
+      textFour.classList.replace("show", "hide");
+      setTimeout(() => {
+        document.getElementById("text-2").classList.add("show");
+      }, 300);
+    }
+  }
+  
+  function check_section_3() {
+    let sectionOne = document.getElementById("section-1");
+    let sectionTwo = document.getElementById("section-2");
+    let sectionThree = document.getElementById("section-3");
+    let sectionFour = document.getElementById("section-4");
+    let textOne = document.getElementById("text-1");
+    let textTwo = document.getElementById("text-2");
+    let textThree = document.getElementById("text-3");
+    let textFour = document.getElementById("text-4");
+  
+    if (sectionThree.classList.contains("shrink")) {
+      sectionThree.classList.replace("shrink", "grow");
+      sectionThree.classList.replace("shadow-blue", "shadow-dark");
+      sectionThree.setAttribute("aria-expanded", "true");
+
+      sectionOne.classList.replace("shadow-dark", "shadow-orange");
+      sectionOne.classList.replace("grow", "shrink");
+      sectionOne.setAttribute("aria-expanded", "false");
+      sectionTwo.classList.replace("grow", "shrink");
+      sectionTwo.classList.replace("shadow-dark", "shadow-pink");
+      sectionTwo.setAttribute("aria-expanded", "false");
+      sectionFour.classList.replace("grow", "shrink");
+      sectionFour.classList.replace("shadow-dark", "shadow-pink");
+      sectionFour.setAttribute("aria-expanded", "false");
+      textOne.classList.replace("show", "hide");
+      textTwo.classList.replace("show", "hide");
+      textFour.classList.replace("show", "hide");
+      textThree.classList.remove("hide");
+      setTimeout(() => {
+        document.getElementById("text-3").classList.add("show");
+      }, 300);
+    }
+  }
+
+  function check_section_4() {
+    let sectionOne = document.getElementById("section-1");
+    let sectionTwo = document.getElementById("section-2");
+    let sectionThree = document.getElementById("section-3");
+    let sectionFour = document.getElementById("section-4");
+    let textOne = document.getElementById("text-1");
+    let textTwo = document.getElementById("text-2");
+    let textThree = document.getElementById("text-3");
+    let textFour = document.getElementById("text-4");
+  
+    if (sectionFour.classList.contains("shrink")) {
+      sectionFour.classList.replace("shrink", "grow");
+      sectionFour.classList.replace("shadow-blue", "shadow-dark");
+      sectionFour.setAttribute("aria-expanded", "true");
+
+      sectionThree.classList.replace("grow", "shrink");
+      sectionThree.classList.remove("shadow-dark","shadow-blue");
+      sectionThree.setAttribute("aria-expanded", "false");
+      sectionOne.classList.replace("shadow-dark", "shadow-orange");
+      sectionOne.classList.replace("grow", "shrink");
+      sectionOne.setAttribute("aria-expanded", "false");
+      sectionTwo.classList.replace("grow", "shrink");
+      sectionTwo.classList.replace("shadow-dark", "shadow-pink");
+      sectionTwo.setAttribute("aria-expanded", "false");
+      textOne.classList.replace("show", "hide");
+      textTwo.classList.replace("show", "hide");
+      textThree.classList.replace("show", "hide");
+      textFour.classList.remove("hide");
+      setTimeout(() => {
+        document.getElementById("text-4").classList.add("show");
+      }, 300);
+    }
+  }
+      </script>
+  </body></html>
