@@ -2,6 +2,11 @@ import flet as ft
 from views.history import History_Screen
 from views.file_to_doc import File_to_doc_Screen
 from views.receive_img import run_web_upload_image
+from PIL import Image, ImageGrab
+import base64
+import io
+import uuid
+import win32clipboard
 import easyocr
 from lib.vietocr.tool.predictor import Predictor
 from lib.vietocr.tool.config import Cfg
@@ -22,6 +27,7 @@ def resource_path(relative_path):
 
 def main(page: ft.Page):
     page.title = "Phần mềm OCR chuyển ảnh thành file Word"
+    page.theme_mode = "dark"
 
     loading_screen = ft.Container(
                         alignment=ft.alignment.center,
@@ -106,14 +112,87 @@ def main(page: ft.Page):
         page.update()
 
     def close_dlg(e):
-        page.dialog = dlg_modal
         dlg_modal.open = False
         qr_dlg.open = False
+        dlg_recheck_image_pasted.open = False
         page.update()
 
-    def open_dlg_modal_to_recieve_file_from_other_device():
-        page.dialog = dlg_modal
-        dlg_modal.open = True
+    def open_dlg_modal_to_recieve_file_from_other_device(e):
+        if qr_text.value == None or qr_text.value == "":
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+        else:
+            open_other_port_to_recieve_file_error_dlg = ft.AlertDialog(
+                content=
+                    ft.Text(
+                        spans = [
+                            ft.TextSpan("Phần mềm hiện đang tiếp nhận file thông qua đường dẫn\n"),
+                            ft.TextSpan(qr_text.value.replace("Hoặc truy cập đường dẫn ", ""), style=ft.TextStyle(italic=True, size=20))
+                            ],)
+            )
+            page.dialog = open_other_port_to_recieve_file_error_dlg
+            open_other_port_to_recieve_file_error_dlg.open = True
+        page.update()
+
+
+    def change_theme_mode_btn(e):
+        e.control.selected = not e.control.selected
+        if page.theme_mode == "dark":
+            page.theme_mode = "light"
+        else:
+            page.theme_mode = "dark"
+        e.control.update()
+        page.update()
+
+    pasted_image = ft.Image(
+        width=500,
+        height=500,
+        fit=ft.ImageFit.CONTAIN,
+        filter_quality=ft.FilterQuality.HIGH,
+    )
+    dlg_recheck_image_pasted = ft.AlertDialog(
+        modal=True,
+    )
+
+    def image_from_clipboard_to_doc(e):
+        if not os.path.isdir(resource_path(r'upload_img')):
+            os.makedirs(resource_path(r'upload_img'), exist_ok=False)
+        pasted_image_path = os.path.join(resource_path(r"upload_img"),(str(uuid.uuid4().hex)+".png"))
+        print(pasted_image_path)
+        Image.open(io.BytesIO(base64.b64decode(pasted_image.src_base64))).save(pasted_image_path)
+        page.go(route="/file_to_doc"+"/"+pasted_image_path)
+
+    def recheck_image_paste_from_clipboard():
+        try:
+            img_byte_arr = io.BytesIO()
+            ImageGrab.grabclipboard().save(img_byte_arr, format='PNG')
+            img_byte_arr = img_byte_arr.getvalue()
+            pasted_image.src_base64 = base64.b64encode(img_byte_arr).decode("utf-8")
+            dlg_recheck_image_pasted.content=ft.Column(
+                controls=[
+                    ft.Text(value="Bạn có muốn chuyển ảnh dưới đây thành Word?"),
+                    pasted_image,
+                ]
+            )
+            dlg_recheck_image_pasted.actions=[
+                ft.TextButton("Xác nhận", on_click=image_from_clipboard_to_doc),
+                ft.TextButton("Hủy", on_click=close_dlg),
+            ]
+        except Exception as e:
+            win32clipboard.OpenClipboard()
+            dlg_recheck_image_pasted.content = ft.Column(
+                controls=[
+                        ft.Text("Dữ liệu bạn mới sao chép hình như không phải định dạng ảnh, phiền bạn kiểm tra lại"),
+                        ft.Text("Dữ liệu mà phần mềm đọc được là: "),
+                        ft.Text(win32clipboard.GetClipboardData())
+                ]
+                )
+            win32clipboard.CloseClipboard()
+            dlg_recheck_image_pasted.actions=[
+                ft.TextButton("Để tôi kiểm tra lại", on_click=close_dlg),
+            ]
+        page.dialog = dlg_recheck_image_pasted
+        dlg_recheck_image_pasted.open = True
         page.update()
 
     qr_dlg = ft.AlertDialog(
@@ -200,6 +279,13 @@ def main(page: ft.Page):
                         width = page.width,
                         content=ft.Stack(
                             controls = [
+                                ft.IconButton(
+                                icon=ft.icons.DARK_MODE_OUTLINED,
+                                selected_icon=ft.icons.WB_SUNNY_OUTLINED,
+                                on_click=change_theme_mode_btn,
+                                bottom = 10,
+                                right = 0,
+                                selected=False),
                                 ft.ElevatedButton(
                                 text = "Lịch sử", 
                                 top = 0,
@@ -234,7 +320,7 @@ def main(page: ft.Page):
                                                         ft.ElevatedButton(
                                                             text = "Nhận file từ thiết bị khác", 
                                                             width = 400,
-                                                            on_click = lambda _: page.go("/recieve_file")),
+                                                            on_click = open_dlg_modal_to_recieve_file_from_other_device),
                                                         qr_container,
                                                             ])
                                                             )
@@ -247,6 +333,7 @@ def main(page: ft.Page):
             ]
             )
         )
+
         if ft.TemplateRoute(page.route).match("/history"):
             page.views.append(
                 History_Screen(page)
@@ -256,8 +343,8 @@ def main(page: ft.Page):
             page.views.append(
                 File_to_doc_Screen(page, re.compile(repath.pattern('/file_to_doc/:path')).match(ft.TemplateRoute(page.route).route).groupdict()['path'], detect_text_model, read_text_detector)
             )
-        elif ft.TemplateRoute(page.route).match("/recieve_file"):
-            image = open_dlg_modal_to_recieve_file_from_other_device()
+        # elif ft.TemplateRoute(page.route).match("/recieve_file"):
+        #     image = open_dlg_modal_to_recieve_file_from_other_device()
             
         page.update()
 
@@ -270,6 +357,13 @@ def main(page: ft.Page):
 
     page.on_route_change = route_change
     page.on_view_pop = view_pop
+    def on_keyboard(e: ft.KeyboardEvent):
+            on_keyboard_input_data = e.data.replace('{', '', 1).replace('}', '', -1).replace("\"",'').split(',')
+            on_keyboard_input_data = {i.split(':')[0]: i.split(':')[1] for i in on_keyboard_input_data}
+            if e.ctrl and on_keyboard_input_data["key"]=="V":
+                recheck_image_paste_from_clipboard()
+
+    page.on_keyboard_event = on_keyboard
     page.go(page.route)
 
 
