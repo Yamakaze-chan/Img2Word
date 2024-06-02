@@ -29,7 +29,7 @@ Nếu bạn muốn xây dựng lại từ code, vui lòng gửi Gmail đến nha
 * Vui lòng đọc **Hướng dẫn sử dụng** trước khi sử dụng
 * Nếu có vấn đề gì trong quá trình sử dụng, vui lòng liên hệ qua nhatvipmason@gmail.com
 <br>
-<br>
+   
 # Lời cuối
 * Hiện tại em đang tìm kiếm 1 công việc (Intern/Fresher) ở khu vực Thành phố Hồ Chí Minh (Em có thể làm các mảng như ML, AI, Web,...), rất mong mọi người giới thiệu em một vài vị trí ạ. Đây là [CV](https://drive.google.com/file/d/1ZTgUMEPQrjYEeInjTawBlWKssMY4aZQd/view?usp=sharing) của em ạ.
 * File *img2file_doc* hoàn toàn có thể được giải mã ngược lại, còn làm như thế nào thì... <br>
