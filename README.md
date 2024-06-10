@@ -1,5 +1,5 @@
 # From Image To Word <br>
-Đây là phần mềm chuyển ảnh thành file Word. Phần mềm được viết bằng [Flet](https://flet.dev/), sử dụng các mô hình [EasyOCR](https://www.jaided.ai/easyocr/),  [VietOCR](https://github.com/pbcquoc/vietocr). 
+Đây là phần mềm chuyển ảnh thành file Word. Phần mềm được viết bằng [Flet](https://flet.dev/), sử dụng các mô hình [EasyOCR](https://www.jaided.ai/easyocr/),  [VietOCR](https://github.com/pbcquoc/vietocr), [DocTr++](https://project.doctrp.top/),. 
 <br>**Nếu bạn có điều kiện, hãy ủng hộ tác giả**. <br>
 # Một số hình ảnh của phần mềm <br>
 ## Màn hình chính
