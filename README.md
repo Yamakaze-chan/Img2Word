@@ -19,7 +19,7 @@
 <br>
 <br>
 # Hướng dẫn cài đặt
-Bạn có thể tải trực tiếp từ đường Drive, sau đó giải nén, chạy file **"From Image To Word.exe"**. Đường dẫn đến phần mềm: [Google Drive](https://drive.google.com/file/d/16OTdEJpnUuvEPUJ9rbcd6mOcT-mu9FtK/view?usp=drive_link)
+Bạn có thể tải trực tiếp từ đường Drive, sau đó giải nén, chạy file **"From Image To Word.exe"**. Đường dẫn đến phần mềm: [Google Drive](https://drive.google.com/file/d/1LA9Lg2lleGex2wpB2egfGcA3i6Ph30EM/view?usp=drive_link)
 <br>
 Nếu bạn muốn xây dựng lại từ code, vui lòng gửi Gmail đến nhatvipmason@gmail.com. Vì file *img2file_doc* đã bị mã hóa.
 <br>
