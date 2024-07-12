@@ -21,9 +21,6 @@
 # Hướng dẫn cài đặt
 Bạn có thể tải trực tiếp từ đường Drive, sau đó giải nén, chạy file **"From Image To Word.exe"**. Đường dẫn đến phần mềm: [Google Drive](https://drive.google.com/file/d/1LA9Lg2lleGex2wpB2egfGcA3i6Ph30EM/view?usp=drive_link)
 <br>
-Nếu bạn muốn xây dựng lại từ code, vui lòng gửi Gmail đến nhatvipmason@gmail.com. Vì file *img2file_doc* đã bị mã hóa.
-<br>
-<br>
 # Lưu ý<br>
 * Phần mềm hiện tại chỉ được sử dụng vì mục đích phi thương mại
 * Vui lòng đọc **Hướng dẫn sử dụng** trước khi sử dụng
@@ -32,6 +29,4 @@ Nếu bạn muốn xây dựng lại từ code, vui lòng gửi Gmail đến nha
    
 # Lời cuối
 * Hiện tại em đang tìm kiếm 1 công việc (Intern/Fresher) ở khu vực Thành phố Hồ Chí Minh (Em có thể làm các mảng như ML, AI, Web,...), rất mong mọi người giới thiệu em một vài vị trí ạ. Đây là [CV](https://drive.google.com/file/d/1ZTgUMEPQrjYEeInjTawBlWKssMY4aZQd/view?usp=sharing) của em ạ.
-* File *img2file_doc* hoàn toàn có thể được giải mã ngược lại, còn làm như thế nào thì... <br>
-![](https://github.com/Yamakaze-chan/Img2Word/blob/main/screen_image/GJiFFowW0AA4Fma.png)
 * Nếu mọi người có ý tưởng về xây dựng 1 cái gì đó (Có thể là app, web, model,...) có thể liên hệ với em thông qua nhatvipmason@gmail.com. Rất mong được lắng nghe những ý tưởng của mọi người.
