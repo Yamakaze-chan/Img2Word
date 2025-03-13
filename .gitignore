@@ -1,0 +1,4 @@
+__pycache__
+lib/vietocr/model/backbone/__pycache__
+lib/vietocr/weights/*
+result/*
